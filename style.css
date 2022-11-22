@@ -4,11 +4,19 @@
 }
 
 #bandeauTitre{
-    height: 100 px;
+    height: 200 px;
     border:2px solid black;
     background-image: url("img/background-titre.jpg");
     background-size: cover;
     font-family: "jokerman-2",'Courier New', Courier, monospace;
     font-size: 64px;
     text-align: center;
+}
+
+#inputCity{
+    height: 150px;
+}
+.encadre{
+    padding: 2px;
+    border:2px solid black;
 }
