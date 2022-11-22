@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "jokerman-2";
+    src: url(font/jokerman-2.ttf);
+}
+
+#bandeauTitre{
+    height: 100 px;
+    border:2px solid black;
+    background-image: url("img/background-titre.jpg");
+    background-size: cover;
+    font-family: "jokerman-2",'Courier New', Courier, monospace;
+    font-size: 64px;
+    text-align: center;
+}
