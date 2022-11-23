@@ -1,5 +1,15 @@
 const validation = document.getElementById('validation');
 const villeInput = document.getElementById('ville-input');
+const meteo = document.getElementById('meteo');
+
+const idnomVille = document.getElementById('idnomVille');
+const idIcon = document.getElementById('idIcon');
+const idtempMini = document.getElementById('idtempMini');
+const idtempMax = document.getElementById('idtempMax');
+const idressentie = document.getElementById('idressentie');
+const idwindSpeed = document.getElementById('idwindSpeed');
+const idwindDir = document.getElementById('idwindDir');
+const idhumidity = document.getElementById('idhumidity');
 
 validation.addEventListener('click', getCoordonnees);
 
@@ -55,21 +65,19 @@ function getMeteo(objcity){
         objcity.windDir = data.wind.deg;
         objcity.humidity = data.main.humidity;
         console.log("objet city", objcity);
+        afficheMeteo(objcity);
     })
 }
 
-/*fetch('https://api-adresse.data.gouv.fr/search/?q=Toulouse&type=municipality&autocomplete=1')
-.then(function(){
+function afficheMeteo(objCity){
+    idnomVille.textContent=objCity.nom;
+    idIcon.src=`http://openweathermap.org/img/wn/${objCity.icon}@2x.png`;
+    idtempMini.textContent=objCity.tempMini+"°C";
+    idtempMax.textContent=objCity.tempMax+"°C";
+    idressentie.textContent=objCity.ressentie+"°C";
+    idwindSpeed.textContent=objCity.windSpeed+"Km/h";
 
-})
-.catch(function(){
-
-});
-
-https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-2ace5cdf8228e455e6b46adda9aade40
-
-"x": 573517.1,
-    "y": 6279590.9,
-
-*/
+    idhumidity.textContent=objCity.humidity+"%";
+    meteo.className="";
+    return
+}
