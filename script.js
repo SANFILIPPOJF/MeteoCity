@@ -13,6 +13,9 @@ const idhumidity = document.getElementById('idhumidity');
 
 validation.addEventListener('click', getCoordonnees);
 
+const idboussole = document.getElementById('boussole');
+idboussole.style.transform = `rotate(80 deg)`;
+
 class City {
     constructor(nom = "", lon = 0, lat = 0){
         this.nom = nom;
@@ -71,7 +74,8 @@ function getMeteo(objcity){
 
 function afficheMeteo(objCity){
     idnomVille.textContent=objCity.nom;
-    idIcon.src=`http://openweathermap.org/img/wn/${objCity.icon}@2x.png`;
+    idIcon.src=`https://openweathermap.org/img/wn/${objCity.icon}@2x.png`;
+    idIcon.label=objCity.descript;
     idtempMini.textContent=objCity.tempMini+"°C";
     idtempMax.textContent=objCity.tempMax+"°C";
     idressentie.textContent=objCity.ressentie+"°C";
