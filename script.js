@@ -1,3 +1,4 @@
+// lien HTML
 const validation = document.getElementById('validation');
 const villeInput = document.getElementById('ville-input');
 const meteo = document.getElementById('meteo');
@@ -13,7 +14,7 @@ const idhumidity = document.getElementById('idhumidity');
 const boussole = document.getElementById('boussole');
 
 validation.addEventListener('click', getCoordonnees);
-
+// définition de classe
 class City {
     constructor(nom = "", lon = 0, lat = 0){
         this.nom = nom;
@@ -28,9 +29,8 @@ class City {
         this.windDir = 0;
         this.humidity = 0
     }
-
 }
-
+// fonction permettant de recupéer les coordonnees gps d'une ville via l'API du gouvernement
 function getCoordonnees() {
     fetch(`https://api-adresse.data.gouv.fr/search/?q=${villeInput.value}&limit=1&type=municipality&autocomplete=1`)
     .then((response) => response.json())
@@ -40,6 +40,7 @@ function getCoordonnees() {
         return;
     })
 }
+// fonction permettant de récuperer les données meteorologiques en un point gps precis
 function getMeteo(objcity){
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${objcity.lat}&lon=${objcity.lon}&units=metric&appid=2ace5cdf8228e455e6b46adda9aade40`)
     .then((response) => response.json())
@@ -56,7 +57,7 @@ function getMeteo(objcity){
         afficheMeteo(objcity);
     })
 }
-
+// affichage des données météorologiques
 function afficheMeteo(objCity){
     idnomVille.textContent=objCity.nom;
     idIcon.src=`https://openweathermap.org/img/wn/${objCity.icon}@2x.png`;
@@ -64,6 +65,7 @@ function afficheMeteo(objCity){
     idtempMini.textContent=objCity.tempMini+"°C";
     idtempMax.textContent=objCity.tempMax+"°C";
     idressentie.textContent=objCity.ressentie+"°C";
+// definition de la direction du vent sous la forme S SE
     let direction="";
     if(objCity.windDir <=30 || objCity.windDir >= 330){
         direction +="Nord ";

@@ -4,7 +4,6 @@
 }
 
 #bandeauTitre{
-    height: 200 px;
     background-image: url("img/background-titre.jpg");
     background-size: cover;
     font-family: "jokerman-2",'Courier New', Courier, monospace;
@@ -13,10 +12,6 @@
 
 #inputCity{
     height: 150px;
-}
-.encadre{
-    padding: 2px;
-    border:2px solid black;
 }
 #boussole{
     background-image: url("img/boussole.svg");

@@ -11,12 +11,13 @@
     <title>Meteo City</title>
 </head>
 
-<body>
+<body class="bg-light">
     <header id="bandeauTitre" class="text-center fs-1 text border border-dark">
         <p>Météo<br>City</p>
     </header>
+    <!--cadre saisie de la ville-->
     <div class="container text-center justify-content-md-center d-flex align-items-center" id="inputCity">
-        <div class="row justify-content-md-center d-flex align-items-center encadre">
+        <div class="row justify-content-md-center d-flex align-items-center border border-dark bg-secondary">
             <div class="col-md-auto">
                 <div class="row justify-content-md-center">
                     <div class="col">
@@ -34,27 +35,29 @@
             </div>
         </div>
     </div>
+    <!--affichage des données meteo (masqué au depart)-->
     <section id="meteo" class="invisible">
         <div class="container border border-dark">
             <div class="row">
-                <span id="idnomVille">Ma ville</span>
+                <span id="idnomVille" class="bg-dark text-white">Ma ville</span>
             </div>
             <div class="row">
-                <div class="col-sm-3 border border-dark">
+                <div class="col-sm-3 border border-dark bg-info">
                     <img id="idIcon">
                 </div>
-                <div class="col-sm-9 border border-dark">
+                <!--les temperatures-->
+                <div class="col-sm-9 border border-dark fw-bold">
                     <div class="row">
-                        <div class="col-4 col-sm-4 border border-dark">
+                        <div class="col border border-dark fw-bold">
                             Temp mini<br>
                             <span id="idtempMini"></span>
                         </div>
-                        <div class="col-4 col-sm-4 border border-dark">
+                        <div class="col border border-dark fw-bold">
                             Temp max<br>
                             <span id="idtempMax"></span>
                         </div>
-                        <div class="col-4 col-sm-4 border border-dark">
-                            ressentie<br>
+                        <div class="col border border-dark fw-bold">
+                            Ressentie<br>
                             <span id="idressentie"></span>
                         </div>
                     </div>
@@ -62,13 +65,13 @@
             </div>
             <div class="container text-center">
                 <div class="row">
-                    <div class="col-sm-9 border border-dark">
+                    <div class=" border border-dark">
                         <div class="row">
-                            <div class="col-8 col-sm-6 border border-dark">
-                                vitesse du vent<br>
+                            <div class="col border border-dark fw-bold">
+                                Vitesse du vent<br>
                                 <span id="idwindSpeed"></span>
                             </div>
-                            <div class="col-4 col-sm-6 border border-dark" id="boussole">
+                            <div class="col-md-auto border border-dark" id="boussole">
                                 <svg  id="aiguille" width="50mm" height="50mm" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
                                         <g transform="translate(-50)">
                                             <path
@@ -86,7 +89,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3 border border-dark">
+                    <div class="col-sm-3 border border-dark fw-bold">
                         taux humidité<br>
                         <span id="idhumidity"></span>
                     </div>
@@ -95,5 +98,4 @@
         </div>
     </section>
 </body>
-
 </html>
