@@ -1,7 +1,7 @@
 const validation = document.getElementById('validation');
 const villeInput = document.getElementById('ville-input');
 const meteo = document.getElementById('meteo');
-
+const aiguille = document.getElementById('aiguille');
 const idnomVille = document.getElementById('idnomVille');
 const idIcon = document.getElementById('idIcon');
 const idtempMini = document.getElementById('idtempMini');
@@ -35,37 +35,24 @@ function getCoordonnees() {
     fetch(`https://api-adresse.data.gouv.fr/search/?q=${villeInput.value}&limit=1&type=municipality&autocomplete=1`)
     .then((response) => response.json())
     .then((data) => {
-        console.log(data.features[0].properties.city);        
-        console.log(data.features[0].geometry.coordinates[0]);
-        console.log(data.features[0].geometry.coordinates[1]);
         let result = new City(data.features[0].properties.city,data.features[0].geometry.coordinates[0],data.features[0].geometry.coordinates[1]);
         getMeteo(result);
         return;
     })
 }
 function getMeteo(objcity){
-    console.log(objcity);
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${objcity.lat}&lon=${objcity.lon}&units=metric&appid=2ace5cdf8228e455e6b46adda9aade40`)
     .then((response) => response.json())
     .then((data) => {
-        console.log("meteo", data);
-        console.log("description",data.weather[0].description);
-        console.log("icon",data.weather[0].icon);
-        console.log("temp mini",data.main.temp_min);
-        console.log("temp max",data.main.temp_max);
-        console.log("ressentie",data.main.feels_like);
-        console.log("vitesse du vent",data.wind.speed);
-        console.log("direction du vent",data.wind.deg);
-        console.log("humidité",data.main.humidity);
         objcity.descript = data.weather[0].description;
         objcity.icon = data.weather[0].icon;
         objcity.tempMini = data.main.temp_min;
         objcity.tempMax = data.main.temp_max;
         objcity.ressentie = data.main.feels_like;
-        objcity.windSpeed = data.wind.speed;
+        // convertion vitesse du vent m/s => km/h (arondi à 1 dixieme)
+        objcity.windSpeed = Math.round(data.wind.speed*36)/10;
         objcity.windDir = data.wind.deg;
         objcity.humidity = data.main.humidity;
-        console.log("objet city", objcity);
         afficheMeteo(objcity);
     })
 }
@@ -77,33 +64,26 @@ function afficheMeteo(objCity){
     idtempMini.textContent=objCity.tempMini+"°C";
     idtempMax.textContent=objCity.tempMax+"°C";
     idressentie.textContent=objCity.ressentie+"°C";
-    idwindSpeed.textContent=objCity.windSpeed+"Km/h";
     let direction="";
     if(objCity.windDir <=30 || objCity.windDir >= 330){
-            direction +="N ";
+        direction +="Nord ";
+    } if (objCity.windDir >=60 && objCity.windDir <= 120){
+        direction +="Est ";
+    } if (objCity.windDir >=150 && objCity.windDir <= 210){
+        direction +="Sud ";
+    } if (objCity.windDir >=240 && objCity.windDir <= 300) {
+        direction +="Ouest ";
+    } if (objCity.windDir >=15 && objCity.windDir <= 75) {
+        direction +="Nord-Est";
+    } if (objCity.windDir >=105 && objCity.windDir <= 165) {
+        direction +="Sud-Est";
+    } if (objCity.windDir >=195 && objCity.windDir <= 255) {
+        direction +="Sud-Ouest";
+    } if (objCity.windDir >=285 && objCity.windDir <= 345) {
+        direction +="Nord-Ouest";
     }
-    if (objCity.windDir >=60 && objCity.windDir <= 120){
-        direction +="E ";
-    }
-    if (objCity.windDir >=150 && objCity.windDir <= 210){
-        direction +="S ";
-    }
-    if (objCity.windDir >=240 && objCity.windDir <= 300) {
-        direction +="O ";
-    }
-    if (objCity.windDir >=15 && objCity.windDir <= 75) {
-        direction +="NE";
-    }
-    if (objCity.windDir >=105 && objCity.windDir <= 165) {
-        direction +="SE";
-    }
-    if (objCity.windDir >=195 && objCity.windDir <= 255) {
-        direction +="SO";
-    }
-    if (objCity.windDir >=285 && objCity.windDir <= 345) {
-        direction +="NO";
-    }
-    console.log("dir",direction);
+    idwindSpeed.textContent=`${objCity.windSpeed}Km/h -> ${direction}`;
+    aiguille.style.transform = `rotate(${objCity.windDir}deg)`;
     idhumidity.textContent=objCity.humidity+"%";
     meteo.className="";
     return

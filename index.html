@@ -21,12 +21,13 @@
                 <div class="row justify-content-md-center">
                     <div class="col">
                         <form id="ville-form">
-                            <input id="ville-input" autofocus type="text" placeholder="Entrez votre ville" aria-label="Zone de saisie de la ville">
+                            <input id="ville-input" autofocus type="text" placeholder="Entrez votre ville"
+                                aria-label="Zone de saisie de la ville">
                         </form>
                     </div>
                     <div class="col-sm-4">
                         <button id="validation" type="button">
-                            <a title="Cliquez ici">Valider</a> 
+                            <a title="Cliquez ici">Valider</a>
                         </button>
                     </div>
                 </div>
@@ -35,7 +36,7 @@
     </div>
     <section id="meteo" class="invisible">
         <div class="container encadre">
-            <div class="row" >
+            <div class="row">
                 <span id="idnomVille">Ma ville</span>
             </div>
             <div class="row">
@@ -68,7 +69,20 @@
                                 <span id="idwindSpeed"></span>
                             </div>
                             <div class="col-4 col-sm-6 encadre" id="boussole">
-                                <img src="img/boussole.svg" alt="Boussole">
+                                <svg  id="aiguille" width="50mm" height="50mm" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                                        <g transform="translate(-50)">
+                                            <path
+                                                style="fill:#e23535;fill-opacity:1;stroke:none;stroke-width:1.00487;stroke-dasharray:1.00487, 1.00487"
+                                                d="m 110.98983,10.397472 -3.43466,20.636531 3.43466,20.636532 3.43466,-20.636532 z"
+                                                transform="matrix(-0.87344803,0,0,-0.87223957,171.94385,52.069087)" />
+                                            <path
+                                                style="fill:#ffffff;fill-opacity:1;stroke-width:0.877094;stroke-dasharray:0.877094, 0.877094"
+                                                d="m 71.999995,24.999999 h 6.000001 l -2.999999,17.999999 z" />
+                                            <circle
+                                                style="fill:#e29e35;fill-opacity:1;stroke-width:0.877094;stroke-dasharray:0.877094, 0.877094"
+                                                cx="75" cy="25" r="2" />
+                                        </g>
+                                </svg>
                             </div>
                         </div>
                     </div>
@@ -81,4 +95,5 @@
         </div>
     </section>
 </body>
+
 </html>

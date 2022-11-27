@@ -20,3 +20,8 @@
     padding: 2px;
     border:2px solid black;
 }
+#boussole{
+    background-image: url("img/boussole.svg");
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
