@@ -10,11 +10,9 @@ const idressentie = document.getElementById('idressentie');
 const idwindSpeed = document.getElementById('idwindSpeed');
 const idwindDir = document.getElementById('idwindDir');
 const idhumidity = document.getElementById('idhumidity');
+const boussole = document.getElementById('boussole');
 
 validation.addEventListener('click', getCoordonnees);
-
-const idboussole = document.getElementById('boussole');
-idboussole.style.transform = `rotate(80 deg)`;
 
 class City {
     constructor(nom = "", lon = 0, lat = 0){
@@ -80,7 +78,32 @@ function afficheMeteo(objCity){
     idtempMax.textContent=objCity.tempMax+"°C";
     idressentie.textContent=objCity.ressentie+"°C";
     idwindSpeed.textContent=objCity.windSpeed+"Km/h";
-
+    let direction="";
+    if(objCity.windDir <=30 || objCity.windDir >= 330){
+            direction +="N ";
+    }
+    if (objCity.windDir >=60 && objCity.windDir <= 120){
+        direction +="E ";
+    }
+    if (objCity.windDir >=150 && objCity.windDir <= 210){
+        direction +="S ";
+    }
+    if (objCity.windDir >=240 && objCity.windDir <= 300) {
+        direction +="O ";
+    }
+    if (objCity.windDir >=15 && objCity.windDir <= 75) {
+        direction +="NE";
+    }
+    if (objCity.windDir >=105 && objCity.windDir <= 165) {
+        direction +="SE";
+    }
+    if (objCity.windDir >=195 && objCity.windDir <= 255) {
+        direction +="SO";
+    }
+    if (objCity.windDir >=285 && objCity.windDir <= 345) {
+        direction +="NO";
+    }
+    console.log("dir",direction);
     idhumidity.textContent=objCity.humidity+"%";
     meteo.className="";
     return
